@@ -59,6 +59,9 @@ jobs:
           # It will create the target directory automatically if not present
           # eg: out-file-path: "my-downloads" => It will create directory $GITHUB_WORKSPACE/my-downloads
           out-file-path: "downloaded/v${{matrix.version}}"
+  gitpush:
+    needs: download
+    runs-on: ubuntu-latest
       - name: Push updated master firmwares in branch firmware
         run: |
           COMMIT="Firmware built from ${{steps.releaseid.outputs.tag_name}}"
