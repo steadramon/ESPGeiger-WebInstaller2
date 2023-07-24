@@ -13,11 +13,29 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
-          workflow: release.yml
-          repo: steadramon/ESPGeiger
-          name: firmware*
-          name_is_regexp: true
+      - uses: robinraju/release-downloader@v1.8
+        with: 
+          # The source repository path.
+          # Expected format {owner}/{repo}
+          # Default: ${{ github.repository }}
+          repository: "steadramon/ESPGeiger"
+          
+          # A flag to set the download target as latest release
+          # The default value is 'false'
+          latest: true
+          
+          # The name of the file to download.
+          # Use this field only to specify filenames other than tarball or zipball, if any.
+          # Supports wildcard pattern (eg: '*', '*.deb', '*.zip' etc..)
+          fileName: "*.bin"
+          
+          # Download the attached tarball (*.tar.gz)
+          tarBall: false
+          
+          # Download the attached zipball (*.zip)
+          zipBall: false
+          
+          # Relative path under $GITHUB_WORKSPACE to place the downloaded file(s)
+          # It will create the target directory automatically if not present
+          # eg: out-file-path: "my-downloads" => It will create directory $GITHUB_WORKSPACE/my-downloads
+          out-file-path: "downloaded"
