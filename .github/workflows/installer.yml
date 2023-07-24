@@ -62,6 +62,7 @@ jobs:
   gitpush:
     needs: download
     runs-on: ubuntu-latest
+    steps:
       - name: Push updated master firmwares in branch firmware
         run: |
           COMMIT="Firmware built from ${{steps.releaseid.outputs.tag_name}}"
