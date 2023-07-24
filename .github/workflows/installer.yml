@@ -8,7 +8,20 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  prepare-environment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - id: prepare
+        uses: ActionsTools/read-json-action@main
+        with:
+          file_path: 'manifests.json'
+    outputs:
+      versions: ${{steps.prepare.outputs.versions}}
+
   download:
+    needs: prepare-environment
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
