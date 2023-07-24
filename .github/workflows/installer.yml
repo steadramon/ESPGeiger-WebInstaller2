@@ -17,6 +17,7 @@ jobs:
         with:
           ref: main
       - uses: robinraju/release-downloader@v1.8
+        id: "releaseid"
         with: 
           # The source repository path.
           # Expected format {owner}/{repo}
@@ -44,9 +45,9 @@ jobs:
           out-file-path: "downloaded"
       - name: Push updated master firmwares in branch firmware
         run: |
-          COMMIT="Firmware built from ${{steps.download.outputs.tag_name}}"
+          COMMIT="Firmware built from ${{steps.releaseid.outputs.tag_name}}"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git add -A
           git commit --allow-empty -m "$COMMIT"
-          git push origin firmware -f
+          git push origin main -f
