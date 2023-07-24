@@ -25,6 +25,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    strategy:
+      matrix:
+        version: ${{fromJson(needs.prepare-environment.outputs.versions)}}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -39,7 +42,7 @@ jobs:
           
           # A flag to set the download target as latest release
           # The default value is 'false'
-          latest: true
+          tag: "v${{matrix.version}}"
           
           # The name of the file to download.
           # Use this field only to specify filenames other than tarball or zipball, if any.
@@ -55,7 +58,7 @@ jobs:
           # Relative path under $GITHUB_WORKSPACE to place the downloaded file(s)
           # It will create the target directory automatically if not present
           # eg: out-file-path: "my-downloads" => It will create directory $GITHUB_WORKSPACE/my-downloads
-          out-file-path: "downloaded"
+          out-file-path: "downloaded/v${{matrix.version}}"
       - name: Push updated master firmwares in branch firmware
         run: |
           COMMIT="Firmware built from ${{steps.releaseid.outputs.tag_name}}"
