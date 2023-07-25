@@ -103,10 +103,10 @@ jobs:
           mv ./downloaded/esp8266_test-firmware.bin bin/test/esp8266_test-firmware.bin
           mv ./downloaded/esp32oled_test-firmware.bin bin/test/oled/esp32oled_test-firmware.bin
           mv ./downloaded/esp8266oled_test-firmware.bin bin/test/oled/esp8266oled_test-firmware.bin
-          mv ./downloaded/esp32_test_pulse-firmware.bin bin/test_pulse/esp32_test_pulse-firmware.bin
-          mv ./downloaded/esp8266_test_pulse-firmware.bin bin/test_pulse/esp8266_test_pulse-firmware.bin
-          mv ./downloaded/esp32oled_test_pulse-firmware.bin bin/test_pulse/oled/esp32oled_test_pulse-firmware.bin
-          mv ./downloaded/esp8266oled_test_pulse-firmware.bin bin/test_pulse/oled/esp8266oled_test_pulse-firmware.bin
+          mv ./downloaded/esp32_testpulse-firmware.bin bin/test_pulse/esp32_testpulse-firmware.bin
+          mv ./downloaded/esp8266_testpulse-firmware.bin bin/test_pulse/esp8266_testpulse-firmware.bin
+          mv ./downloaded/esp32oled_testpulse-firmware.bin bin/test_pulse/oled/esp32oled_testpulse-firmware.bin
+          mv ./downloaded/esp8266oled_testpulse-firmware.bin bin/test_pulse/oled/esp8266oled_testpulse-firmware.bin
           mv ./downloaded/esp32_pulse_no_pcnt-firmware.bin bin/pulse_no_pcnt/esp32_pulse_no_pcnt-firmware.bin
           mv ./downloaded/esp32oled_pulse_no_pcnt-firmware.bin bin/pulse_no_pcnt/oled/esp32oled_pulse_no_pcnt-firmware.bin
           rm -rf ./downloaded
