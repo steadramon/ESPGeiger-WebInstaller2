@@ -1,3 +1,13 @@
+name: fetch_firmwares
+
+on: [push]
+
+# Ensures that only one deploy task per branch/environment will run at a time.
+concurrency:
+  group: environment-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
   download:
     needs: prepare-environment
     runs-on: ubuntu-latest
