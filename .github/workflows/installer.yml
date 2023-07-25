@@ -22,7 +22,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git remote add -f mrg_main "https://github.com/steadramon/ESPGeiger-WebInstaller2" --track main
           git switch -c work
-          #rm -rf ./github
+          rm -rf ./github
           git merge mrg_main/main --allow-unrelated-histories &> status.txt
           echo "$(<status.txt)"
       - name: Push into branch firmware
