@@ -114,6 +114,7 @@ jobs:
         run: |
           sed -i "s#{version}#${{steps.releaseid.outputs.tag_name}}#" bin/*/manifest.json
           sed -i "s#{version}#${{steps.releaseid.outputs.tag_name}}#" bin/*/*/manifest.json
+          sed -i "s#{version}#${{steps.releaseid.outputs.tag_name}}#" index.htm
       - name: Push updated master firmwares in branch firmware
         run: |
           COMMIT="Firmware built from ${{steps.releaseid.outputs.tag_name}}"
