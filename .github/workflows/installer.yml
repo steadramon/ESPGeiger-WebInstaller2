@@ -66,8 +66,8 @@ jobs:
           rm -rf ./downloaded
       - name: Set version tag from git
         run: |
-          sed -i "s/\{version\}/${{steps.releaseid.outputs.tag_name}}/g" bin/*/manifest.json
-          sed -i "s/\{version\}/${{steps.releaseid.outputs.tag_name}}/g" bin/*/*/manifest.json
+          sed -i "s#{version}#${{steps.releaseid.outputs.tag_name}}#" bin/*/manifest.json
+          sed -i "s#{version}#${{steps.releaseid.outputs.tag_name}}#" bin/*/*/manifest.json
       - name: Push updated master firmwares in branch firmware
         run: |
           COMMIT="Firmware built from ${{steps.releaseid.outputs.tag_name}}"
