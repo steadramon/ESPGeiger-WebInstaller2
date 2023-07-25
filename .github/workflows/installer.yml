@@ -75,5 +75,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git add -A
           git commit --allow-empty -m "$COMMIT"
-          git push origin main -f
+          git push origin firmware -f
 
