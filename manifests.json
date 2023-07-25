@@ -2,5 +2,53 @@
     "versions": [
         "0.3.0",
         "0.3.1"
+    ],
+    "release" : [
+        {
+            "id": "espgeigerhw",
+            "title": "ESPGeiger-HW",
+            "builds": [
+                {
+                    "chipFamily": "ESP8266",
+                    "path": "espgeigerhw-firmware.bin"
+                }
+            ]
+        },
+        {
+            "id": "pulse",
+            "title": "Pulse",
+            "builds": [
+                {
+                    "chipFamily": "ESP8266",
+                    "path": "esp8266_pulse-firmware.bin"
+                },
+                {
+                    "chipFamily": "ESP32",
+                    "path": "esp32_pulse_no_pcnt-firmware.bin"
+                }
+            ],
+            "oledbuilds": [
+                {
+                    "chipFamily": "ESP8266",
+                    "path": "espgeigerhw-firmware.bin"
+                }
+            ]
+        },
+        {
+            "id": "pulse_pcnt",
+            "title": "Pulse",
+            "builds": [
+                {
+                    "chipFamily": "ESP32",
+                    "path": "esp32_pulse-firmware.bin"
+                }
+            ],
+            "oledbuilds": [
+                {
+                    "chipFamily": "ESP32",
+                    "path": "esp32oled_pulse-firmware.bin"
+                }
+            ]
+        }
     ]
 }

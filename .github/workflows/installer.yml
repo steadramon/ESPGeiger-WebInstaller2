@@ -1,37 +1,29 @@
-name: fetch_firmwares
-
-on: [push]
-
-# Ensures that only one deploy task per branch/environment will run at a time.
-concurrency:
-  group: environment-${{ github.ref }}
-  cancel-in-progress: false
-
-jobs:
-  prepare-environment:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - id: prepare
-        uses: ActionsTools/read-json-action@main
-        with:
-          file_path: 'manifests.json'
-    outputs:
-      versions: ${{steps.prepare.outputs.versions}}
-
   download:
     needs: prepare-environment
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    strategy:
-      matrix:
-        version: ${{fromJson(needs.prepare-environment.outputs.versions)}}
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: main
+          ref: firmware
+      - name: Merge branch main into branch firmware
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git remote add -f mrg_main "https://github.com/steadramon/ESPGeiger-WebInstaller2" --track main
+          git switch -c work
+          #rm -rf ./github
+          git merge mrg_main/main --allow-unrelated-histories &> status.txt
+          echo "$(<status.txt)"
+      - name: Push into branch firmware
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          branch: 'firmware'
+      - uses: actions/checkout@v3
+        with:
+          ref: firmware
       - uses: robinraju/release-downloader@v1.8
         id: "releaseid"
         with: 
@@ -42,7 +34,7 @@ jobs:
           
           # A flag to set the download target as latest release
           # The default value is 'false'
-          tag: "v${{matrix.version}}"
+          latest: true
           
           # The name of the file to download.
           # Use this field only to specify filenames other than tarball or zipball, if any.
@@ -58,11 +50,15 @@ jobs:
           # Relative path under $GITHUB_WORKSPACE to place the downloaded file(s)
           # It will create the target directory automatically if not present
           # eg: out-file-path: "my-downloads" => It will create directory $GITHUB_WORKSPACE/my-downloads
-          out-file-path: "downloaded/v${{matrix.version}}"
-  gitpush:
-    needs: download
-    runs-on: ubuntu-latest
-    steps:
+          out-file-path: "downloaded"
+      - name: Move firmware files in sub-folders
+        run: |
+          mv ./downloaded/espgeigerhw-firmware.bin bin/espgeigerhw/espgeigerhw-firmware.bin
+          rm -rf ./downloaded
+      - name: Set version tag from git
+        run: |
+          sed -i "s/\{version\}/${{steps.releaseid.outputs.tag_name}}/g" bin/*/manifest.json
+          sed -i "s/\{version\}/${{steps.releaseid.outputs.tag_name}}/g" bin/*/*/manifest.json
       - name: Push updated master firmwares in branch firmware
         run: |
           COMMIT="Firmware built from ${{steps.releaseid.outputs.tag_name}}"
@@ -71,3 +67,4 @@ jobs:
           git add -A
           git commit --allow-empty -m "$COMMIT"
           git push origin main -f
+
