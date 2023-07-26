@@ -8,8 +8,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  empty_branch:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: firmware
+    - name: Create new empty firmware branch
+      run: |
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git config user.name "github-actions[bot]"
+        git switch --orphan new_branch                                 # create empty branch
+        git commit --allow-empty -m "Initial commit"
+        git push -u origin new_branch                                  # push empty branch in repo
+        git switch firmware
+        git reset --hard new_branch                                    # reset firmware branch
+        git push origin firmware -f
+        git push origin --delete new_branch                            # delete empty_branch
+
   download:
     runs-on: ubuntu-latest
+    needs: empty_branch
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -84,10 +103,10 @@ jobs:
           mv ./downloaded/esp8266_test-firmware.bin bin/test/esp8266_test-firmware.bin
           mv ./downloaded/esp32oled_test-firmware.bin bin/test/oled/esp32oled_test-firmware.bin
           mv ./downloaded/esp8266oled_test-firmware.bin bin/test/oled/esp8266oled_test-firmware.bin
-          mv ./downloaded/esp32_test_pulse-firmware.bin bin/test_pulse/esp32_test_pulse-firmware.bin
-          mv ./downloaded/esp8266_test_pulse-firmware.bin bin/test_pulse/esp8266_test_pulse-firmware.bin
-          mv ./downloaded/esp32oled_test_pulse-firmware.bin bin/test_pulse/oled/esp32oled_test_pulse-firmware.bin
-          mv ./downloaded/esp8266oled_test_pulse-firmware.bin bin/test_pulse/oled/esp8266oled_test_pulse-firmware.bin
+          mv ./downloaded/esp32_testpulse-firmware.bin bin/test_pulse/esp32_testpulse-firmware.bin
+          mv ./downloaded/esp8266_testpulse-firmware.bin bin/test_pulse/esp8266_testpulse-firmware.bin
+          mv ./downloaded/esp32oled_testpulse-firmware.bin bin/test_pulse/oled/esp32oled_testpulse-firmware.bin
+          mv ./downloaded/esp8266oled_testpulse-firmware.bin bin/test_pulse/oled/esp8266oled_testpulse-firmware.bin
           mv ./downloaded/esp32_pulse_no_pcnt-firmware.bin bin/pulse_no_pcnt/esp32_pulse_no_pcnt-firmware.bin
           mv ./downloaded/esp32oled_pulse_no_pcnt-firmware.bin bin/pulse_no_pcnt/oled/esp32oled_pulse_no_pcnt-firmware.bin
           rm -rf ./downloaded
@@ -95,6 +114,7 @@ jobs:
         run: |
           sed -i "s#{version}#${{steps.releaseid.outputs.tag_name}}#" bin/*/manifest.json
           sed -i "s#{version}#${{steps.releaseid.outputs.tag_name}}#" bin/*/*/manifest.json
+          sed -i "s#{version}#${{steps.releaseid.outputs.tag_name}}#" index.htm
       - name: Push updated master firmwares in branch firmware
         run: |
           COMMIT="Firmware built from ${{steps.releaseid.outputs.tag_name}}"
