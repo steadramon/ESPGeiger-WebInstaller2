@@ -1,5 +1,6 @@
 {
   "name": "ESPGeiger OLED GC10Next {version}",
+  "new_install_prompt_erase": true,
   "builds": [
     {
       "chipFamily": "ESP32",
