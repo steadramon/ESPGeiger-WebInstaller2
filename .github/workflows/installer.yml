@@ -81,34 +81,34 @@ jobs:
           out-file-path: "downloaded"
       - name: Move firmware files in sub-folders
         run: |
-          mv ./downloaded/espgeigerhw-firmware.bin bin/espgeigerhw/espgeigerhw-firmware.bin
-          mv ./downloaded/esp32_cajoe_iotgm-firmware.bin bin/cajoeiot/esp32_cajoe_iotgm-firmware.bin
-          mv ./downloaded/esp32_gc10-firmware.bin bin/gc10/esp32_gc10-firmware.bin
-          mv ./downloaded/esp8266_gc10-firmware.bin bin/gc10/esp8266_gc10-firmware.bin
-          mv ./downloaded/esp32oled_gc10-firmware.bin bin/gc10/oled/esp32oled_gc10-firmware.bin
-          mv ./downloaded/esp8266oled_gc10-firmware.bin bin/gc10/oled/esp8266oled_gc10-firmware.bin
-          mv ./downloaded/esp32_gc10next-firmware.bin bin/gc10next/esp32_gc10next-firmware.bin
-          mv ./downloaded/esp8266_gc10next-firmware.bin bin/gc10next/esp8266_gc10next-firmware.bin
-          mv ./downloaded/esp32oled_gc10next-firmware.bin bin/gc10next/oled/esp32oled_gc10next-firmware.bin
-          mv ./downloaded/esp8266oled_gc10next-firmware.bin bin/gc10next/oled/esp8266oled_gc10next-firmware.bin
-          mv ./downloaded/esp32_mightyohm-firmware.bin bin/mightyohm/esp32_mightyohm-firmware.bin
-          mv ./downloaded/esp8266_mightyohm-firmware.bin bin/mightyohm/esp8266_mightyohm-firmware.bin
-          mv ./downloaded/esp32oled_mightyohm-firmware.bin bin/mightyohm/oled/esp32oled_mightyohm-firmware.bin
-          mv ./downloaded/esp8266oled_mightyohm-firmware.bin bin/mightyohm/oled/esp8266oled_mightyohm-firmware.bin
-          mv ./downloaded/esp32_pulse-firmware.bin bin/pulse/esp32_pulse-firmware.bin
-          mv ./downloaded/esp8266_pulse-firmware.bin bin/pulse/esp8266_pulse-firmware.bin
-          mv ./downloaded/esp32oled_pulse-firmware.bin bin/pulse/oled/esp32oled_pulse-firmware.bin
-          mv ./downloaded/esp8266oled_pulse-firmware.bin bin/pulse/oled/esp8266oled_pulse-firmware.bin
-          mv ./downloaded/esp32_test-firmware.bin bin/test/esp32_test-firmware.bin
-          mv ./downloaded/esp8266_test-firmware.bin bin/test/esp8266_test-firmware.bin
-          mv ./downloaded/esp32oled_test-firmware.bin bin/test/oled/esp32oled_test-firmware.bin
-          mv ./downloaded/esp8266oled_test-firmware.bin bin/test/oled/esp8266oled_test-firmware.bin
-          mv ./downloaded/esp32_testpulse-firmware.bin bin/test_pulse/esp32_testpulse-firmware.bin
-          mv ./downloaded/esp8266_testpulse-firmware.bin bin/test_pulse/esp8266_testpulse-firmware.bin
-          mv ./downloaded/esp32oled_testpulse-firmware.bin bin/test_pulse/oled/esp32oled_testpulse-firmware.bin
-          mv ./downloaded/esp8266oled_testpulse-firmware.bin bin/test_pulse/oled/esp8266oled_testpulse-firmware.bin
-          mv ./downloaded/esp32_pulse_no_pcnt-firmware.bin bin/pulse_no_pcnt/esp32_pulse_no_pcnt-firmware.bin
-          mv ./downloaded/esp32oled_pulse_no_pcnt-firmware.bin bin/pulse_no_pcnt/oled/esp32oled_pulse_no_pcnt-firmware.bin
+          mv ./downloaded/espgeigerhw-firmware.*bin bin/espgeigerhw/espgeigerhw-firmware.bin
+          mv ./downloaded/esp32_cajoe_iotgm-firmware_merged.*bin bin/cajoeiot/esp32_cajoe_iotgm-firmware.bin
+          mv ./downloaded/esp32_gc10-firmware_merged.*bin bin/gc10/esp32_gc10-firmware.bin
+          mv ./downloaded/esp8266_gc10-firmware.*bin bin/gc10/esp8266_gc10-firmware.bin
+          mv ./downloaded/esp32oled_gc10-firmware_merged.*bin bin/gc10/oled/esp32oled_gc10-firmware.bin
+          mv ./downloaded/esp8266oled_gc10-firmware.*bin bin/gc10/oled/esp8266oled_gc10-firmware.bin
+          mv ./downloaded/esp32_gc10next-firmware_merged.*bin bin/gc10next/esp32_gc10next-firmware.bin
+          mv ./downloaded/esp8266_gc10next-firmware.*bin bin/gc10next/esp8266_gc10next-firmware.bin
+          mv ./downloaded/esp32oled_gc10next-firmware_merged.*bin bin/gc10next/oled/esp32oled_gc10next-firmware.bin
+          mv ./downloaded/esp8266oled_gc10next-firmware.*bin bin/gc10next/oled/esp8266oled_gc10next-firmware.bin
+          mv ./downloaded/esp32_mightyohm-firmware_merged.*bin bin/mightyohm/esp32_mightyohm-firmware.bin
+          mv ./downloaded/esp8266_mightyohm-firmware.*bin bin/mightyohm/esp8266_mightyohm-firmware.bin
+          mv ./downloaded/esp32oled_mightyohm-firmware_merged.*bin bin/mightyohm/oled/esp32oled_mightyohm-firmware.bin
+          mv ./downloaded/esp8266oled_mightyohm-firmware.*bin bin/mightyohm/oled/esp8266oled_mightyohm-firmware.bin
+          mv ./downloaded/esp32_pulse-firmware_merged.*bin bin/pulse/esp32_pulse-firmware.bin
+          mv ./downloaded/esp8266_pulse-firmware.*bin bin/pulse/esp8266_pulse-firmware.bin
+          mv ./downloaded/esp32oled_pulse-firmware_merged.*bin bin/pulse/oled/esp32oled_pulse-firmware.bin
+          mv ./downloaded/esp8266oled_pulse-firmware.*bin bin/pulse/oled/esp8266oled_pulse-firmware.bin
+          mv ./downloaded/esp32_test-firmware_merged.*bin bin/test/esp32_test-firmware.bin
+          mv ./downloaded/esp8266_test-firmware.*bin bin/test/esp8266_test-firmware.bin
+          mv ./downloaded/esp32oled_test-firmware_merged.*bin bin/test/oled/esp32oled_test-firmware.bin
+          mv ./downloaded/esp8266oled_test-firmware.*bin bin/test/oled/esp8266oled_test-firmware.bin
+          mv ./downloaded/esp32_testpulse-firmware_merged.*bin bin/test_pulse/esp32_testpulse-firmware.bin
+          mv ./downloaded/esp8266_testpulse-firmware.*bin bin/test_pulse/esp8266_testpulse-firmware.bin
+          mv ./downloaded/esp32oled_testpulse-firmware_merged.*bin bin/test_pulse/oled/esp32oled_testpulse-firmware.bin
+          mv ./downloaded/esp8266oled_testpulse-firmware.*bin bin/test_pulse/oled/esp8266oled_testpulse-firmware.bin
+          mv ./downloaded/esp32_pulse_no_pcnt-firmware_merged.*bin bin/pulse_no_pcnt/esp32_pulse_no_pcnt-firmware.bin
+          mv ./downloaded/esp32oled_pulse_no_pcnt-firmware.*bin bin/pulse_no_pcnt/oled/esp32oled_pulse_no_pcnt-firmware.bin
           rm -rf ./downloaded
       - name: Set version tag from git
         run: |
