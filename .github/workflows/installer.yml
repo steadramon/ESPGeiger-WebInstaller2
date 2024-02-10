@@ -82,6 +82,7 @@ jobs:
       - name: Move firmware files in sub-folders
         run: |
           mv ./downloaded/espgeigerhw-firmware.*bin bin/espgeigerhw/espgeigerhw-firmware.bin
+          mv ./downloaded/espgeigerlog-firmware.*bin bin/espgeigerlog/espgeigerlog-firmware.bin
           mv ./downloaded/esp32_cajoe_iotgm-firmware_merged.*bin bin/cajoeiot/esp32_cajoe_iotgm-firmware.bin
           mv ./downloaded/esp32_gc10-firmware_merged.*bin bin/gc10/esp32_gc10-firmware.bin
           mv ./downloaded/esp8266_gc10-firmware.*bin bin/gc10/esp8266_gc10-firmware.bin
@@ -123,4 +124,3 @@ jobs:
           git add -A
           git commit --allow-empty -m "$COMMIT"
           git push origin firmware -f
-
