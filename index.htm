@@ -179,6 +179,16 @@
   }
 
   function checkSupported() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const boardParam = urlParams.get('board');
+    if (boardParam) {
+      for (i = 0; i < document.getElementById("buildtype").length; ++i){
+        if (document.getElementById("buildtype").options[i].dataset.manifest == boardParam){
+          document.getElementById('buildtype').selectedIndex = i;
+        }
+      }
+    }
+
     if (document.getElementById('inst').hasAttribute('install-unsupported')) unsupported();
     else setManifest();
   }
