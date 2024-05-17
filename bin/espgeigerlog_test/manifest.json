@@ -1,5 +1,5 @@
 {
-  "name": "ESPGeiger-Log Test {version}",
+  "name": "ESPGeiger-Log Test v0.5.4",
   "new_install_prompt_erase": true,
   "builds": [
     {
