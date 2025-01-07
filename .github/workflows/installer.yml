@@ -113,7 +113,7 @@ jobs:
           mv ./downloaded/esp32oled_testpulse-firmware_merged.*bin bin/test_pulse/oled/esp32oled_testpulse-firmware.bin
           mv ./downloaded/esp8266oled_testpulse-firmware.*bin bin/test_pulse/oled/esp8266oled_testpulse-firmware.bin
           mv ./downloaded/esp32_pulse_no_pcnt-firmware_merged.*bin bin/pulse_no_pcnt/esp32_pulse_no_pcnt-firmware.bin
-          mv ./downloaded/esp32oled_pulse_no_pcnt-firmware.*bin bin/pulse_no_pcnt/oled/esp32oled_pulse_no_pcnt-firmware.bin
+          mv ./downloaded/esp32oled_pulse_no_pcnt-firmware_merged.*bin bin/pulse_no_pcnt/oled/esp32oled_pulse_no_pcnt-firmware.bin
           rm -rf ./downloaded
       - name: Set version tag from git
         run: |
